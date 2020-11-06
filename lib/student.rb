@@ -30,6 +30,7 @@ class Student
     SQL
     
     DB[:conn].execute.(sql)
+    Self.new_from_db
   end
   
   def save
