@@ -2,7 +2,6 @@ class Student
   attr_accessor :id, :name, :grade
 
   def self.new_from_db(row)
-    # binding.pry
     student = Student.new 
     student.id = row[0]
     student.name = row[1]
@@ -11,8 +10,6 @@ class Student
   end
 
   def self.all
-    # retrieve all the rows from the "Students" database
-    # remember each row should be a new instance of the Student class
     sql = <<-SQL 
     SELECT * FROM students
     SQL
@@ -31,6 +28,13 @@ class Student
       self.new_from_db(row)
     end.first
   end
+  
+  def self.all_students_in_grade_9
+    sql = <<-SQL
+    SELECT * FROM students WHERE grade = 9 
+    SQL
+    
+    DB[:conn].execute(sql)
   
   def save
     sql = <<-SQL
