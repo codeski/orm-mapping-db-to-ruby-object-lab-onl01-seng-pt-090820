@@ -31,6 +31,7 @@ class Student
     
     DB[:conn].execute.(sql, name).map do |row|
       Self.new_from_db(row)
+    end
   end
   
   def save
