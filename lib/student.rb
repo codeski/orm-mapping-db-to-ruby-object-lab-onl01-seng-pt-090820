@@ -29,8 +29,8 @@ class Student
     SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
     
-    DB[:conn].execute.(sql)
-    Self.new_from_db
+    DB[:conn].execute.(sql, name).map do |row|
+      Self.new_from_db(row)
   end
   
   def save
